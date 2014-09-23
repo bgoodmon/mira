@@ -1,11 +1,18 @@
 # config valid only for Capistrano 3.1
 lock '3.2.1'
 
-set :application, 'mira'
+def current_git_branch
+  branch = `git symbolic-ref HEAD 2> /dev/null`.strip.gsub(/^refs\/heads\//, '')
+  puts "Deploying branch #{branch}"
+  branch
+end
+
 set :scm, :git
 set :repo_url, 'https://github.com/curationexperts/mira.git'
 #set :repo_url, 'git@github.com/curationexperts/mira.git'
-set :branch, 'master'
+# Set the deploy branch to the current branch
+set :branch, current_git_branch
+#set :branch, 'master'
 set :deploy_to, '/opt/mira'
 set :log_level, :debug
 set :keep_releases, 5
