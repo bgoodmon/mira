@@ -34,7 +34,7 @@ Tufts::Application.routes.draw do
   end
   
   mount Hydra::RoleManagement::Engine => '/'
-  mount Resque::Server, => '/queues'
+  mount Resque::Server => '/queues'
   mount Qa::Engine => '/qa'
 
   mount HydraEditor::Engine => '/'
