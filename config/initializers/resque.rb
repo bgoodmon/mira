@@ -2,8 +2,8 @@ config = YAML::load(ERB.new(IO.read(File.join(Rails.root, 'config', 'redis.yml')
 Resque.redis = Redis.new(host: config[:host], port: config[:port], thread_safe: true)
 Resque::Plugins::Status::Hash.expire_in = (7 * 24 * 60 * 60) # makes statuses go away in 1 week
 
-require ‘resque/server’
-require ‘resque/status_server’
+require 'resque/server'
+require 'resque/status_server'
 
 unless Resque.inline?
   require 'active_support/lazy_load_hooks'
